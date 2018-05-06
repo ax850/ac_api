@@ -37,6 +37,13 @@ let upload = multer({
 /* Using Multer to Parse MultiPart Data */
 router.route('/')
     .post(upload.any('image'), function (req, res, err) {
+      /*
+      * Create A memory and store image to Cloudainry
+      * @header-param authorization-token
+      * @body location
+      * @body description
+      * @body image
+      * */
       const token = req.headers['authorization-token'];
       if (!token) return res.status(401).send({ auth: false, message: miscConstants.MISSING_TOKEN });
       tokenHelper.getUserFromToken(token, function (err, data) {
@@ -62,8 +69,11 @@ router.route('/')
       }
 
     })
-    /* Get Memory For Specific User */
     .get(function (req, res) {
+      /*
+      * Get all memories
+      * @header-param authorization-token
+      * */
       const token = req.headers['authorization-token'];
       if (!token) return res.status(401).send({ auth: false, message: miscConstants.MISSING_TOKEN });
 
@@ -87,6 +97,10 @@ router.route('/')
 
 router.route('/:memory_id')
     .delete(function (req, res) {
+      /*
+      * Delete a memory created by same user
+      * @param memory_id id of memory
+      * */
       const memory_id = req.params.memory_id;
       const token = req.headers['authorization-token'];
       if (!token) return res.status(401).send({ auth: false, message: miscConstants.MISSING_TOKEN });

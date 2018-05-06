@@ -6,6 +6,10 @@ const {friendConstants} = require('./APIConstants/friends.constants');
 
 router.route('/')
   .get(function (req, res) {
+    /*
+    * Get All Friends
+    * @header-param authorization-token
+    * */
     const token = req.headers['authorization-token'];
     if (!token) return res.status(401).send({auth: false, message: miscConstants.MISSING_TOKEN});
 
@@ -27,6 +31,11 @@ router.route('/')
     }
   })
   .post(function (req, res) {
+    /*
+    * Remove Friend
+    * @header-param authorization-token
+    * @body friend Username of friend
+    * */
     const token = req.headers['authorization-token'];
     if (!token) return res.status(401).send({auth: false, message: miscConstants.MISSING_TOKEN});
 

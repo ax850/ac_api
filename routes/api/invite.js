@@ -10,6 +10,11 @@ const {userConstants} = require('./APIConstants/user.constants');
 
 router.route('/')
     .post(function (req, res) {
+      /*
+      * Reponse to an invite or Cancel a sent Invite
+      * @header-param authorization-token
+      * @query-param: action What action to do for Invite
+      * */
       const {to_user} = req.body;
       const token = req.headers['authorization-token'];
       if (!token) return res.status(401).send({auth: false, message: miscConstants.MISSING_TOKEN});
@@ -53,8 +58,11 @@ router.route('/')
       }
     })
 
-    /* Get Invites */
     .get(function (req, res) {
+      /*
+      * Get all invites
+      * @header-param authorization-token
+      * */
       const token = req.headers['authorization-token'];
       if (!token) return res.status(401).send({auth: false, message: miscConstants.MISSING_TOKEN});
 

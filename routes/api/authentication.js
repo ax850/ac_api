@@ -8,6 +8,11 @@ const db = require('./../../db_conn');
 
 router.route('/')
     .post(function (req, res) {
+      /*
+      * Authenticate User and Return JWT
+      * @body username
+      * @body password
+      * */
 
       const { username } = req.body;
       const { password } = req.body;

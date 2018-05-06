@@ -28,7 +28,7 @@ app.use(function(req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
-  // Authorization Header Token //
+  /* Authorization Header Token, Token Should be in the Header */
   res.setHeader('Access-Control-Allow-Headers', 'Authorization-Token, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
 //and remove cacheing so we get the most recent comments
   res.setHeader('Cache-Control', 'no-cache');

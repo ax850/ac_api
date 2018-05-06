@@ -11,8 +11,11 @@ const tokenHelper = require('../../helper/auth.helpers');
 
 
 router.route('/all')
-/* Fetch All Users */
     .get(function (req, res) {
+      /*
+      * Fetch All users
+      * @header-param authorization-token
+      * */
       const token = req.headers['authorization-token'];
       if (!token) return res.status(401).send({auth: false, message: miscConstants.MISSING_TOKEN});
 
@@ -35,8 +38,15 @@ router.route('/all')
     });
 
 router.route('/')
-/* Create a User */
     .post(function (req, res) {
+      /*
+      * Create a user and hash the password
+      * Create A User
+      * @body firstName
+      * @body lastName
+      * @body password
+      * @username username
+      * */
       const {firstName} = req.body;
       const {lastName} = req.body;
       const {password} = req.body;
@@ -70,8 +80,11 @@ router.route('/')
         }
       });
     })
-    /* Get User Profile */
     .get(function (req, res) {
+      /*
+      * Get User profile
+      * @header-param authorization-token
+      * */
       const token = req.headers['authorization-token'];
       if (!token) return res.status(401).send({auth: false, message: miscConstants.MISSING_TOKEN});
 
